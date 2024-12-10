@@ -1,25 +1,37 @@
 import Link from "next/link";
 
+const navLinks = [
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
+
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full backdrop-blur-md bg-white/30 z-50 h-20 flex items-center">
-      <div className="container mx-auto flex justify-between items-center px-4">
-        <h1 className="text-2xl font-bold font-alegreya">Sooraj Nambiar</h1>
-        <div className="flex space-x-4">
+    <div className="flex justify-center mt-4">
+      <div className="w-fit bg-[#f8f8f865] text-black rounded-lg shadow backdrop-blur-md fixed z-50 ">
+        <nav className="flex justify-between items-center px-6 py-4 gap-4">
+          <ul className="flex gap-6 text-base">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="hover:text-black transition duration-150"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
           <Link
-            href="/"
-            className="px-3 py-2 hover:bg-gray-200 transition-colors"
+            href="/Sooraj_Nambiar_Resume.pdf"
+            target="_blank"
+            className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-colors"
           >
-            Home
-          </Link>
-          <button className="px-3 py-2 hover:bg-gray-200 transition-colors">
             Resume
-          </button>
-          <button className="px-3 py-2 border-2 border-black hover:bg-black hover:text-white transition-colors">
-            Contact Me
-          </button>
-        </div>
+          </Link>
+        </nav>
       </div>
-    </nav>
+    </div>
   );
 }
